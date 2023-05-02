@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Motorcycle } from './models/motorcycle';
+import { MotorcycleService } from './services/motorcycle.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Motorcycles.UI';
+  motorcycles: Motorcycle[] = [];
+
+  constructor(private motorcycleService: MotorcycleService){}
+
+  ngOnInit(): void{
+    this.motorcycles = this.motorcycleService.getAllMotorcycles();
+
+    console.log(this.motorcycles);
+  }
 }

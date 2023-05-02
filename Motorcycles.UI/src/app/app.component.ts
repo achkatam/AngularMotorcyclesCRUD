@@ -11,11 +11,11 @@ export class AppComponent {
   title = 'Motorcycles.UI';
   motorcycles: Motorcycle[] = [];
 
-  constructor(private motorcycleService: MotorcycleService){}
+  constructor(private motorcycleService: MotorcycleService) { }
 
-  ngOnInit(): void{
-    this.motorcycles = this.motorcycleService.getAllMotorcycles();
-
-    console.log(this.motorcycles);
+  ngOnInit(): void {
+    this.motorcycleService
+    .getAllMotorcycles()
+    .subscribe((result: Motorcycle[]) => (this.motorcycles = result));
   }
 }

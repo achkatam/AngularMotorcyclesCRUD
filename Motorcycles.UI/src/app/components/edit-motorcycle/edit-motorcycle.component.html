@@ -1,0 +1,22 @@
+<div *ngIf="motorcycle">
+    <h2>{{motorcycle.make}}</h2>
+    <div>
+        Make:
+        <input [(ngModel)]="motorcycle.make" placeholder="Make"/>
+    </div>
+    <div>
+        Model:
+        <input [(ngModel)]="motorcycle.model" placeholder="Model"/>
+    </div>
+    <div>
+        Year:
+        <input [(ngModel)]="motorcycle.year" placeholder="Year"/>
+    </div>
+    <div>
+        Price:
+        <input [(ngModel)]="motorcycle.price" placeholder="Price"/>
+    </div>
+    <button (click)="updateMotorcycle(motorcycle)" *ngIf="motorcycle.id">Save</button>
+    <button (click)="addMotorcycle(motorcycle)" *ngIf="!motorcycle.id">Add</button>
+    <button (click)="deleteMotorcycle(motorcycle)" *ngIf="motorcycle.id">Delete</button>
+</div>

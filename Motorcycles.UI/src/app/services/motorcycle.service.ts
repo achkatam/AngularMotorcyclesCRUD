@@ -13,6 +13,20 @@ export class MotorcycleService {
   constructor(private http: HttpClient) { }
 
  public getAllMotorcycles(): Observable<Motorcycle[]>{
-  return this.http.get<Motorcycle[]>(`${environment.apiUrl}/Motorcycle`);
+  return this.http.get<Motorcycle[]>
+  (`${environment.apiUrl}/Motorcycle`);
  }
+
+ public updateMotorcycle(motorcycle: Motorcycle): Observable<Motorcycle[]>{
+  return this.http.put<Motorcycle[]>
+  (`${environment.apiUrl}/Motorcycle`, motorcycle);
+ }
+ public addMotorcycle(motorcycle: Motorcycle): Observable<Motorcycle[]>{
+  return this.http.post<Motorcycle[]>
+  (`${environment.apiUrl}/Motorcycle`, motorcycle);
+ }
+ public deleteMotorcycle(motorcycle: Motorcycle): Observable<Motorcycle[]>{
+  return this.http.delete<Motorcycle[]>
+  (`${environment.apiUrl}/Motorcycle/${motorcycle.id}`);
+}
 }

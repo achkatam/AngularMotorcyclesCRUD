@@ -10,6 +10,7 @@ import { MotorcycleService } from './services/motorcycle.service';
 export class AppComponent {
   title = 'Motorcycles.UI';
   motorcycles: Motorcycle[] = [];
+  motorcycleToEdit?: Motorcycle;
 
   constructor(private motorcycleService: MotorcycleService) { }
 
@@ -17,5 +18,17 @@ export class AppComponent {
     this.motorcycleService
     .getAllMotorcycles()
     .subscribe((result: Motorcycle[]) => (this.motorcycles = result));
+  }
+
+  updatedMotorcycleList(motorcycles: Motorcycle[]){
+    this.motorcycles = motorcycles;
+  }
+
+  initNewMotorcycle(){
+    this.motorcycleToEdit = new Motorcycle();
+  }
+
+  editMotorcycle(motorcycle: Motorcycle){
+    this.motorcycleToEdit = motorcycle;
   }
 }

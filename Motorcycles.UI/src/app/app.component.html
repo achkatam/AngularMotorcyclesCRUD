@@ -1,3 +1,5 @@
+<button (click)="initNewMotorcycle()">Add new Motorcycle</button>
+
 <table>
   <thead>
     <th>Make</th>
@@ -11,7 +13,10 @@
       <td>{{ motorcycle.make }}</td>
       <td>{{ motorcycle.model }}</td>
       <td>{{ motorcycle.year }}</td>
-      <td>{{ motorcycle.price }}</td>
+      <td>${{ motorcycle.price }}</td>
+      <td><button (click)="editMotorcycle(motorcycle)">Edit</button></td>
     </tr>
   </tbody>
 </table>
+
+<app-edit-motorcycle [motorcycle]="motorcycleToEdit" (motorcyclesUpdated)="updatedMotorcycleList($event)"></app-edit-motorcycle>

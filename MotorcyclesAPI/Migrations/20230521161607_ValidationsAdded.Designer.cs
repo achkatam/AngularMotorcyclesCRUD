@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotorcyclesAPI.Data;
 
@@ -10,9 +11,10 @@ using MotorcyclesAPI.Data;
 namespace MotorcyclesAPI.Migrations
 {
     [DbContext(typeof(MotorcycleContext))]
-    partial class MotorcycleContextModelSnapshot : ModelSnapshot
+    [Migration("20230521161607_ValidationsAdded")]
+    partial class ValidationsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,16 +1,13 @@
 ﻿namespace MotorcyclesAPI.Models;
 
+using System.ComponentModel.DataAnnotations;
+
 using Common;
+using Utilities;
 
 public class Motorcycle
 {
-    private readonly int _id;
-    private readonly string _model;
-    private readonly string _make;
-    private readonly string _year;
-    private decimal _price;
-
-    public Motorcycle(string model, string make, string year, decimal price)
+    public Motorcycle(string model, string make, int year, decimal price)
     {
         Model = model;
         Make = make;
@@ -18,73 +15,23 @@ public class Motorcycle
         Price = price;
     }
 
-    public int Id
-    {
-        get { return _id; }
-        private init
-        {
-            if (value <= 0)
-            {
-                throw new ArgumentException(ExceptionMessages.WRONG_ID);
-            }
+    [Key]
+    public int Id { get;set;}
 
-            _id = value;
-        }
-    }
+    [Required]
+    [StringLength(ValidationConstants.MOTORCYCLE_MAKE_MAX,ErrorMessage = "Max length for Make is 75 chars, cannot be null or empty", MinimumLength = ValidationConstants.MOTORCYCLE_MAKE_MIN)]
+    public string Make { get; set; }
 
-    public string Make
-    {
-        get { return _make; }
-        private init
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentException(ExceptionMessages.WRONG_MAKE);
-            }
+    [Required]
+    [StringLength(ValidationConstants.MOTORCYCLE_MODEL_MAX, ErrorMessage = "Max length for Model is 75 chars, cannot be null or empty", MinimumLength = ValidationConstants.MOTORCYCLE_MODEL_MIN)]
+    public string Model { get; set; }
 
-            _make = value;
-        }
-    }
+    [Required]
+    [CurrentYearRange(ValidationConstants.MOTORCYCLE_YEAR_MIN)]
+    public int Year { get; set; }
 
-    public string Model
-    {
-        get { return _model; }
-        private init
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentException(ExceptionMessages.WRONG_MODEL);
-            }
-
-            _model = value;
-        }
-    }
-
-    public string Year
-    {
-        get { return _year; }
-        private init
-        {
-            if (string.IsNullOrWhiteSpace(value) || int.Parse(value) <= 1900)
-            {
-                throw new ArgumentException(ExceptionMessages.WRONG_YEAR);
-            }
-
-            _year = value;
-        }
-    }
-
-    public decimal Price
-    {
-        get { return _price; }
-        internal set
-        {
-            if (value <= 0)
-            {
-                throw new ArgumentException(ExceptionMessages.WRONG_PRICE);
-            }
-
-            _price = value;
-        }
-    }
+    [Required]
+    [Range((double)ValidationConstants.MOTORCYCLE_PRICE_MIN, (double)ValidationConstants.MOTORCYCLE_PRICE_MAX)]
+    public decimal Price { get; set; }
+     
 }
